@@ -58,6 +58,15 @@ const API_BASE_URL = window.MPOWER_API_BASE_URL;
 
 const authToken = localStorage.getItem("token");
 
+function getUserId(user) {
+    if (!user) return "";
+    return String(user._id || user.id || "");
+}
+
+function isSameUser(userA, userB) {
+    return getUserId(userA) === getUserId(userB);
+}
+
 
 // ======================================
 // DOM ELEMENTS
@@ -668,7 +677,7 @@ function displayUsers(){
 
                 <button
                 class="edit-user-btn"
-                data-id="${user.id}">
+                data-id="${getUserId(user)}">
 
                     ✏ Edit
 
@@ -678,7 +687,7 @@ function displayUsers(){
 
                 <button
                 class="delete-user-btn"
-                data-id="${user.id}"
+                data-id="${getUserId(user)}"
                 ${isCurrentAdmin ? "disabled":""}>
 
                     🗑 Delete
@@ -709,7 +718,7 @@ function displayUsers(){
 function openEditModal(user){
 
     if(
-    String(user.id) === String(currentUser.id)
+    isSameUser(user, currentUser)
 ){
 
     editRole.disabled = true;
@@ -725,7 +734,7 @@ else{
 
 
     editUserId.value =
-        user.id;
+        getUserId(user);
 
 
     editName.value =
@@ -797,33 +806,8 @@ usersTableBody.addEventListener(
 
         const user =
             users.find(item =>
-                String(item._id || item.id) === id
+                getUserId(item) === id
             );
-
-            // ======================================
-// PROTECT CURRENT ADMIN ACCOUNT
-// ======================================
-
-const editingOwnAccount =
-    String(id) === String(currentUser.id);
-
-
-if(
-    editingOwnAccount &&
-    role !== "admin"
-){
-
-    showMessage(
-        "You cannot remove admin privileges from the account you are currently using.",
-        "error",
-        "Action Blocked"
-    );
-
-    editRole.value = "admin";
-
-    return;
-
-}
 
         if(!user){
 
@@ -891,7 +875,7 @@ editUserForm.addEventListener(
 
         const index =
             users.findIndex(user =>
-                Number(user.id) === id
+                getUserId(user) === id
             );
 
 
@@ -1002,7 +986,7 @@ usersTableBody.addEventListener(
 
 
         if(
-            id === String(currentUser._id || currentUser.id)
+            isSameUser(user, currentUser)
         ){
 
             showMessage(
@@ -1074,7 +1058,7 @@ confirmDelete.addEventListener(
 
 
 
-        const id = userToDelete._id || userToDelete.id;
+        const id = getUserId(userToDelete);
 
         try {
             const response = await fetch(
@@ -1093,7 +1077,7 @@ confirmDelete.addEventListener(
                 throw new Error(data.message || "Could not delete this account.");
             }
 
-            users = users.filter(user => String(user._id || user.id) !== String(id));
+            users = users.filter(user => getUserId(user) !== String(id));
             closeDeleteModal();
             await updateStatistics();
             displayUsers();
