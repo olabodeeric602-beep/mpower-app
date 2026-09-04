@@ -613,8 +613,7 @@ function displayUsers(){
 
 
         const isCurrentAdmin =
-            Number(user.id) ===
-            Number(currentUser.id);
+            isSameUser(user, currentUser);
 
 
 
@@ -970,13 +969,13 @@ usersTableBody.addEventListener(
 
 
         const id =
-            Number(button.dataset.id);
+            String(button.dataset.id || "");
 
 
 
         const user =
             users.find(item =>
-                Number(item.id) === id
+                getUserId(item) === id
             );
 
 
