@@ -1,0 +1,417 @@
+/* ======================================
+   MPower - UI Notifications
+====================================== */
+
+
+/* ======================================
+   NOTIFICATION
+====================================== */
+
+#mpowerNotification {
+
+    position: fixed;
+
+    top: 30px;
+    right: 30px;
+
+    width: min(420px, calc(100% - 40px));
+
+    z-index: 99999;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform: translateX(120%);
+
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+
+}
+
+
+#mpowerNotification.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    transform: translateX(0);
+
+}
+
+
+.mpower-notification-box {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding: 20px;
+
+    background:
+        linear-gradient(135deg, rgba(255,255,255,.96), rgba(245,249,244,.95));
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 22px 50px rgba(17, 24, 39, 0.18),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    border: 1px solid rgba(67, 160, 71, 0.12);
+    border-left: 5px solid #43A047;
+
+}
+
+
+.mpower-notification-icon {
+
+    width: 42px;
+    height: 42px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #43A047;
+
+    color: white;
+
+    font-size: 20px;
+
+    font-weight: bold;
+
+}
+
+
+.mpower-notification-content {
+
+    flex: 1;
+
+}
+
+
+.mpower-notification-content h3 {
+
+    margin: 0 0 4px;
+
+    font-size: 17px;
+
+    color: #1B5E20;
+
+}
+
+
+.mpower-notification-content p {
+
+    margin: 0;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    color: #555;
+
+}
+
+
+#mpowerNotificationClose {
+
+    border: none;
+
+    background: transparent;
+
+    color: #888;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    line-height: 1;
+
+}
+
+
+/* ======================================
+   ERROR
+====================================== */
+
+#mpowerNotification.error
+.mpower-notification-box {
+
+    border-left-color: #d32f2f;
+
+}
+
+
+#mpowerNotification.error
+.mpower-notification-icon {
+
+    background: #d32f2f;
+
+}
+
+
+#mpowerNotification.error
+.mpower-notification-content h3 {
+
+    color: #b71c1c;
+
+}
+
+
+/* ======================================
+   WARNING
+====================================== */
+
+#mpowerNotification.warning
+.mpower-notification-box {
+
+    border-left-color: #f57c00;
+
+}
+
+
+#mpowerNotification.warning
+.mpower-notification-icon {
+
+    background: #f57c00;
+
+}
+
+
+/* ======================================
+   INFO
+====================================== */
+
+#mpowerNotification.info
+.mpower-notification-box {
+
+    border-left-color: #1976d2;
+
+}
+
+
+#mpowerNotification.info
+.mpower-notification-icon {
+
+    background: #1976d2;
+
+}
+
+
+/* ======================================
+   CONFIRM MODAL
+====================================== */
+
+#mpowerConfirmModal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background: rgba(0, 0, 0, 0.55);
+
+}
+
+
+.mpower-confirm-box {
+
+    width: min(430px, 100%);
+
+    background:
+        linear-gradient(180deg, rgba(255,255,255,.98), rgba(245,249,244,.96));
+
+    border: 1px solid rgba(27,94,32,.06);
+    border-radius: 24px;
+
+    padding: 30px;
+
+    text-align: center;
+
+    box-shadow:
+        0 26px 60px rgba(17, 24, 39, 0.22),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    animation:
+        mpowerModalIn 0.25s ease;
+
+}
+
+
+@keyframes mpowerModalIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.9);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+.mpower-confirm-icon {
+
+    width: 55px;
+    height: 55px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #fff3e0;
+
+    color: #f57c00;
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+}
+
+
+.mpower-confirm-box h3 {
+
+    margin: 0 0 10px;
+
+    color: #222;
+
+}
+
+
+.mpower-confirm-box p {
+
+    margin: 0 auto 25px;
+
+    color: #666;
+
+    line-height: 1.6;
+
+}
+
+
+.mpower-confirm-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+}
+
+
+.mpower-confirm-actions button {
+
+    border: none;
+
+    padding: 12px 20px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-weight: 600;
+
+    transition: transform 0.2s ease;
+
+}
+
+
+.mpower-confirm-actions button:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+.mpower-cancel-btn {
+
+    background: #eeeeee;
+
+    color: #333;
+
+}
+
+
+.mpower-confirm-btn {
+
+    background: #d32f2f;
+
+    color: white;
+
+}
+
+
+/* ======================================
+   MOBILE
+====================================== */
+
+@media (max-width: 600px) {
+
+    #mpowerNotification {
+
+        top: 15px;
+
+        right: 15px;
+
+        width: calc(100% - 30px);
+
+    }
+
+
+    .mpower-confirm-box {
+
+        padding: 25px 20px;
+
+    }
+
+
+    .mpower-confirm-actions {
+
+        flex-direction: column;
+
+    }
+
+
+    .mpower-confirm-actions button {
+
+        width: 100%;
+
+    }
+
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Food | MPower</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/ui.css">
+    <link rel="stylesheet" href="../css/request.css">
+</head>
+
+<body class="request-food-page">
+
+<section class="request-section">
+
+    <div class="container request-shell">
+
+        <div class="page-header">
+
+            <div class="section-kicker">
+                <i class="fa-solid fa-bowl-food"></i>
+                Available support near you
+            </div>
+
+            <h1>Available Food Donations</h1>
+
+            <p>
+                Browse available donations and request food near you.
+            </p>
+
+        </div>
+
+        <div class="filter-section">
+
+            <div class="search-wrap">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input
+                    type="text"
+                    id="searchFood"
+                    placeholder="Search food, donor or location...">
+            </div>
+
+            <div class="select-wrap">
+                <i class="fa-solid fa-filter"></i>
+                <select id="categoryFilter">
+                    <option value="">All Categories</option>
+                    <option value="Cooked Food">Cooked Food</option>
+                    <option value="Bakery">Bakery</option>
+                    <option value="Fruits">Fruits</option>
+                    <option value="Vegetables">Vegetables</option>
+                    <option value="Beverages">Beverages</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="food-grid" id="foodGrid"></div>
+
+    </div>
+
+</section>
+
+<div class="modal hidden" id="requestModal">
+
+    <div class="modal-content">
+
+        <button id="closeModal" class="close-btn">&times;</button>
+
+        <div class="modal-heading">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <h2>Request Food</h2>
+        </div>
+
+        <p id="selectedFood"></p>
+
+        <div class="form-group">
+            <label for="requestQuantity">Quantity Needed</label>
+            <input type="number" id="requestQuantity" min="1">
+        </div>
+
+        <div class="form-group">
+            <label for="pickupDate">Pickup Date</label>
+            <input type="date" id="pickupDate">
+        </div>
+
+        <div class="form-group">
+            <label for="requestNotes">Notes</label>
+            <textarea id="requestNotes" rows="4"></textarea>
+        </div>
+
+        <button id="sendRequest" class="request-btn">
+            <i class="fa-solid fa-paper-plane"></i>
+            Send Request
+        </button>
+
+    </div>
+
+</div>
+<script src="../js/api-config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/notifications.js"></script>
+<script src="../js/auth.js"></script>
+<script src="../js/request.js?v=2"></script>
+
+</body>
+</html>

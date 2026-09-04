@@ -1,0 +1,1817 @@
+/* =========================================================
+   MPower - Volunteer Dashboard
+   Premium 3D / Glass / Scroll Experience
+========================================================= */
+
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.volunteer-dashboard {
+
+    min-height: 100vh;
+
+    padding: 130px 8% 90px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(67, 160, 71, .12),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 90% 20%,
+            rgba(255, 152, 0, .10),
+            transparent 28%
+        ),
+        linear-gradient(
+            135deg,
+            #f5f9f4 0%,
+            #eef7ef 50%,
+            #f8fbf8 100%
+        );
+}
+
+
+/* Decorative background lights */
+
+.volunteer-dashboard::before,
+.volunteer-dashboard::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 350px;
+    height: 350px;
+
+    border-radius: 50%;
+
+    filter: blur(80px);
+
+    opacity: .25;
+
+    pointer-events: none;
+
+}
+
+
+.volunteer-dashboard::before {
+
+    top: 5%;
+    left: -180px;
+
+    background: #43A047;
+
+}
+
+
+.volunteer-dashboard::after {
+
+    right: -180px;
+    bottom: 10%;
+
+    background: #FF9800;
+
+}
+
+
+.volunteer-dashboard .container {
+
+    width: 100%;
+
+    max-width: 1250px;
+
+    margin: 0 auto;
+
+    position: relative;
+
+    z-index: 2;
+
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.volunteer-header {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 30px;
+
+    margin-bottom: 45px;
+
+    padding: 38px 42px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.8);
+
+    border-radius: 28px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.92),
+            rgba(255,255,255,.68)
+        );
+
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 25px 60px rgba(27, 94, 32, .12),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    transform-style: preserve-3d;
+
+    animation:
+        dashboardReveal .7s ease both;
+
+}
+
+
+/* Header shine */
+
+.volunteer-header::before {
+
+    content: "";
+
+    position: absolute;
+
+    top: -100px;
+    right: -100px;
+
+    width: 250px;
+    height: 250px;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(67,160,71,.15),
+            transparent 70%
+        );
+
+    pointer-events: none;
+
+}
+
+
+.section-title {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-bottom: 10px;
+
+    color: #2f7d31;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    text-transform: uppercase;
+
+}
+
+
+.section-title::before {
+
+    content: "";
+
+    width: 28px;
+    height: 3px;
+
+    border-radius: 10px;
+
+    background: #2f7d31;
+
+}
+
+
+.volunteer-header h1 {
+
+    margin: 0 0 12px;
+
+    color: var(--primary);
+
+    font-size: clamp(32px, 5vw, 52px);
+
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+
+}
+
+
+.volunteer-header h1 span {
+
+    color: var(--secondary);
+
+}
+
+
+.volunteer-header p {
+
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #687468;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   PROFILE BUTTON
+========================================================= */
+
+.back-profile-btn {
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    min-width: 150px;
+
+    padding: 14px 22px;
+
+    border: 1px solid rgba(67,160,71,.2);
+
+    border-radius: 50px;
+
+    background: rgba(255,255,255,.8);
+
+    color: var(--primary);
+
+    font-weight: 700;
+
+    white-space: nowrap;
+
+    box-shadow:
+        0 10px 25px rgba(27,94,32,.08);
+
+    transition:
+        transform .35s cubic-bezier(.2,.8,.2,1),
+        box-shadow .35s ease,
+        background .35s ease,
+        color .35s ease;
+
+}
+
+
+.back-profile-btn:hover {
+
+    color: white;
+
+    background: var(--primary);
+
+    transform:
+        translateY(-6px)
+        rotateX(3deg);
+
+    box-shadow:
+        0 18px 35px rgba(27,94,32,.25);
+
+}
+
+
+/* =========================================================
+   STATISTICS
+========================================================= */
+
+.volunteer-stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 24px;
+
+    margin-bottom: 70px;
+
+}
+
+
+.volunteer-stat-card {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    min-height: 130px;
+
+    padding: 25px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.9);
+
+    border-radius: 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.96),
+            rgba(247,251,247,.78)
+        );
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 20px 45px rgba(27,94,32,.10),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .45s cubic-bezier(.2,.8,.2,1),
+        box-shadow .45s ease;
+
+    animation:
+        cardReveal .7s ease both;
+
+}
+
+
+.volunteer-stat-card:nth-child(2) {
+
+    animation-delay: .12s;
+
+}
+
+
+.volunteer-stat-card:nth-child(3) {
+
+    animation-delay: .24s;
+
+}
+
+
+.volunteer-stat-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 130px;
+    height: 130px;
+
+    right: -55px;
+    bottom: -70px;
+
+    border-radius: 50%;
+
+    background: rgba(67,160,71,.08);
+
+    transition:
+        transform .5s ease;
+
+}
+
+
+.volunteer-stat-card:hover {
+
+    transform:
+        translateY(-12px)
+        rotateX(4deg)
+        rotateY(-3deg);
+
+    box-shadow:
+        0 30px 65px rgba(27,94,32,.17),
+        0 10px 20px rgba(27,94,32,.08);
+
+}
+
+
+.volunteer-stat-card:hover::after {
+
+    transform: scale(1.5);
+
+}
+
+
+.stat-icon {
+
+    width: 65px;
+    height: 65px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e8f7e9,
+            #d8f0da
+        );
+
+    color: var(--primary);
+
+    font-size: 28px;
+
+    box-shadow:
+        8px 8px 18px rgba(27,94,32,.08),
+        inset 2px 2px 5px rgba(255,255,255,.9);
+
+    transform: translateZ(20px);
+
+}
+
+
+.volunteer-stat-card span {
+
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #778177;
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+}
+
+
+.volunteer-stat-card strong {
+
+    display: block;
+
+    color: var(--primary);
+
+    font-size: 34px;
+
+    line-height: 1;
+
+}
+
+
+/* =========================================================
+   MAIN SECTION
+========================================================= */
+
+.volunteer-section {
+
+    padding: 42px;
+
+    position: relative;
+
+    border-radius: 30px;
+
+    background:
+        rgba(255,255,255,.55);
+
+    border: 1px solid rgba(255,255,255,.8);
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 25px 60px rgba(27,94,32,.08);
+
+    animation:
+        dashboardReveal .8s ease both;
+
+}
+
+
+.section-heading {
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: space-between;
+
+    margin-bottom: 35px;
+
+}
+
+
+.section-heading h2 {
+
+    margin: 6px 0 8px;
+
+    color: var(--primary);
+
+    font-size: clamp(25px, 4vw, 34px);
+
+    letter-spacing: -.5px;
+
+}
+
+
+.section-heading p {
+
+    margin: 0;
+
+    color: #778177;
+
+    line-height: 1.6;
+
+}
+
+
+/* =========================================================
+   DONATION GRID
+========================================================= */
+
+.donation-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 28px;
+
+    perspective: 1200px;
+
+}
+
+
+/* =========================================================
+   DONATION CARD
+========================================================= */
+
+.donation-card {
+
+    position: relative;
+
+    overflow: hidden;
+
+    border: 1px solid rgba(255,255,255,.9);
+
+    border-radius: 25px;
+
+    background: white;
+
+    box-shadow:
+        0 15px 35px rgba(27,94,32,.10),
+        0 4px 10px rgba(0,0,0,.03);
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform .5s cubic-bezier(.2,.8,.2,1),
+        box-shadow .5s ease;
+
+    animation:
+        cardReveal .65s ease both;
+
+    animation-timeline: view();
+
+    animation-range: entry 0% cover 30%;
+
+}
+
+
+.donation-card:hover {
+
+    transform:
+        translateY(-14px)
+        rotateX(3deg)
+        rotateY(-3deg)
+        scale(1.015);
+
+    box-shadow:
+        0 30px 65px rgba(27,94,32,.18),
+        0 10px 25px rgba(0,0,0,.06);
+
+}
+
+
+/* =========================================================
+   DONATION IMAGE
+========================================================= */
+
+.donation-image {
+
+    width: 100%;
+
+    height: 210px;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #e9f5e9,
+            #f6faf6
+        );
+
+}
+
+
+.donation-image img {
+
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform .7s cubic-bezier(.2,.8,.2,1),
+        filter .5s ease;
+
+}
+
+
+.donation-card:hover
+.donation-image img {
+
+    transform: scale(1.1);
+
+    filter:
+        saturate(1.08)
+        contrast(1.02);
+
+}
+
+
+.no-image {
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 55px;
+
+    background:
+        radial-gradient(
+            circle,
+            #ffffff,
+            #eaf6ea
+        );
+
+}
+
+
+/* Image bottom fade */
+
+.donation-image::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    height: 70px;
+
+    background:
+        linear-gradient(
+            transparent,
+            rgba(0,0,0,.16)
+        );
+
+    pointer-events: none;
+
+}
+
+
+/* =========================================================
+   DONATION CONTENT
+========================================================= */
+
+.donation-content {
+
+    padding: 25px;
+
+}
+
+
+.donation-category {
+
+    display: inline-flex;
+
+    padding: 6px 12px;
+
+    margin-bottom: 10px;
+
+    border-radius: 50px;
+
+    background: #eaf7eb;
+
+    color: var(--primary);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: .7px;
+
+    text-transform: uppercase;
+
+}
+
+
+.donation-content h3 {
+
+    margin: 3px 0 16px;
+
+    color: #1f2a20;
+
+    font-size: 22px;
+
+}
+
+
+.donation-content p {
+
+    margin: 9px 0;
+
+    color: #687468;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+.donation-quantity {
+
+    font-weight: 700;
+
+    color: var(--primary) !important;
+
+}
+
+
+.donation-location {
+
+    color: #59645b !important;
+
+}
+
+
+.donation-expiry {
+
+    color: #b66a00 !important;
+
+}
+
+
+/* =========================================================
+   VIEW DELIVERY BUTTON
+========================================================= */
+
+.view-donation-btn {
+
+    width: 100%;
+
+    margin-top: 18px;
+
+    padding: 14px 20px;
+
+    border: none;
+
+    border-radius: 14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 10px 20px rgba(67,160,71,.20);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        filter .3s ease;
+
+}
+
+
+.view-donation-btn:hover {
+
+    transform:
+        translateY(-4px)
+        translateZ(12px);
+
+    box-shadow:
+        0 16px 30px rgba(67,160,71,.30);
+
+    filter:
+        brightness(1.05);
+
+}
+
+
+.view-donation-btn:active {
+
+    transform:
+        translateY(1px)
+        scale(.98);
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+
+    padding: 70px 30px;
+
+    text-align: center;
+
+    border: 2px dashed #d8e8d9;
+
+    border-radius: 25px;
+
+    background:
+        rgba(248,252,248,.8);
+
+}
+
+
+.empty-state.hidden {
+
+    display: none;
+
+}
+
+
+.empty-icon {
+
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: #eaf6ea;
+
+    font-size: 35px;
+
+    box-shadow:
+        0 12px 25px rgba(67,160,71,.10);
+
+}
+
+
+.empty-state h3 {
+
+    margin-bottom: 8px;
+
+    color: var(--primary);
+
+    font-size: 22px;
+
+}
+
+
+.empty-state p {
+
+    max-width: 450px;
+
+    margin: 0 auto;
+
+    color: #777;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   DONATION MODAL
+========================================================= */
+
+.volunteer-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100000;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 25px;
+
+    background:
+        rgba(10,25,12,.62);
+
+    backdrop-filter: blur(10px);
+
+    opacity: 1;
+
+    transition:
+        opacity .3s ease;
+
+}
+
+
+.volunteer-modal.hidden {
+
+    display: none;
+
+}
+
+
+.volunteer-modal-content {
+
+    width: min(560px, 100%);
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    position: relative;
+
+    padding: 40px;
+
+    border: 1px solid rgba(255,255,255,.8);
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.98),
+            rgba(246,251,246,.96)
+        );
+
+    box-shadow:
+        0 35px 90px rgba(0,0,0,.30);
+
+    transform-style: preserve-3d;
+
+    animation:
+        modal3DIn .35s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+@keyframes modal3DIn {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            perspective(900px)
+            rotateX(-12deg)
+            scale(.88)
+            translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            perspective(900px)
+            rotateX(0)
+            scale(1)
+            translateY(0);
+
+    }
+
+}
+
+
+.modal-close {
+
+    position: absolute;
+
+    top: 16px;
+    right: 16px;
+
+    width: 40px;
+    height: 40px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #f0f4f0;
+
+    color: #555;
+
+    font-size: 25px;
+
+    cursor: pointer;
+
+    transition:
+        transform .3s ease,
+        background .3s ease;
+
+}
+
+
+.modal-close:hover {
+
+    background: #e4ebe4;
+
+    transform:
+        rotate(90deg)
+        scale(1.08);
+
+}
+
+
+.modal-donation-icon {
+
+    width: 70px;
+    height: 70px;
+
+    margin-bottom: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #e8f6e9,
+            #d9efdb
+        );
+
+    font-size: 32px;
+
+    box-shadow:
+        8px 10px 25px rgba(27,94,32,.10);
+
+}
+
+
+.volunteer-modal-content h2 {
+
+    margin: 5px 0 25px;
+
+    color: var(--primary);
+
+    font-size: 32px;
+
+}
+
+
+/* =========================================================
+   MODAL DETAILS
+========================================================= */
+
+.modal-details {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, 1fr);
+
+    gap: 14px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.modal-details > div {
+
+    padding: 18px;
+
+    border: 1px solid #e3eee3;
+
+    border-radius: 16px;
+
+    background: #f8fbf8;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease;
+
+}
+
+
+.modal-details > div:hover {
+
+    transform: translateY(-4px);
+
+    box-shadow:
+        0 10px 25px rgba(27,94,32,.08);
+
+}
+
+
+.modal-details span {
+
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #7b857c;
+
+    font-size: 12px;
+
+}
+
+
+.modal-details strong {
+
+    display: block;
+
+    color: #263528;
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+}
+
+
+.modal-notes {
+
+    margin-bottom: 25px;
+
+    padding: 20px;
+
+    border-left: 4px solid var(--secondary);
+
+    border-radius: 12px;
+
+    background: #f5faf5;
+
+}
+
+
+.modal-notes strong {
+
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--primary);
+
+}
+
+
+.modal-notes p {
+
+    margin: 0;
+
+    color: #667067;
+
+    line-height: 1.7;
+
+}
+
+
+/* =========================================================
+   ACCEPT BUTTON
+========================================================= */
+
+.accept-delivery-btn {
+
+    width: 100%;
+
+    padding: 16px 25px;
+
+    border: none;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 15px 30px rgba(67,160,71,.22);
+
+    transition:
+        transform .35s ease,
+        box-shadow .35s ease;
+
+}
+
+
+.accept-delivery-btn:hover {
+
+    transform:
+        translateY(-5px)
+        scale(1.01);
+
+    box-shadow:
+        0 20px 40px rgba(67,160,71,.32);
+
+}
+
+
+/* =========================================================
+   3D SCROLL REVEAL
+========================================================= */
+
+@keyframes dashboardReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            perspective(1000px)
+            translateY(35px)
+            rotateX(4deg);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            perspective(1000px)
+            translateY(0)
+            rotateX(0);
+
+    }
+
+}
+
+
+@keyframes cardReveal {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            perspective(1000px)
+            translateY(60px)
+            rotateX(8deg)
+            scale(.96);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            perspective(1000px)
+            translateY(0)
+            rotateX(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY / REDUCED MOTION
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        animation-duration: .01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: .01ms !important;
+
+    }
+
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .volunteer-dashboard {
+
+        padding: 115px 5% 70px;
+
+    }
+
+
+    .donation-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+    }
+
+
+    .volunteer-section {
+
+        padding: 32px;
+
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 750px) {
+
+    .volunteer-dashboard {
+
+        padding: 105px 5% 60px;
+
+    }
+
+
+    .volunteer-header {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        padding: 30px 25px;
+
+    }
+
+
+    .back-profile-btn {
+
+        width: 100%;
+
+    }
+
+
+    .volunteer-stats {
+
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+
+        margin-bottom: 50px;
+
+    }
+
+
+    .volunteer-stat-card {
+
+        min-height: 105px;
+
+    }
+
+
+    .volunteer-section {
+
+        padding: 25px 18px;
+
+        border-radius: 22px;
+
+    }
+
+
+    .section-heading {
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .donation-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .donation-image {
+
+        height: 220px;
+
+    }
+
+
+    .volunteer-modal {
+
+        padding: 15px;
+
+    }
+
+
+    .volunteer-modal-content {
+
+        padding: 32px 22px;
+
+        border-radius: 24px;
+
+    }
+
+
+    .modal-details {
+
+        grid-template-columns: 1fr;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 450px) {
+
+    .volunteer-header h1 {
+
+        font-size: 31px;
+
+    }
+
+
+    .volunteer-header p {
+
+        font-size: 14px;
+
+    }
+
+
+    .volunteer-stat-card {
+
+        padding: 20px;
+
+    }
+
+
+    .stat-icon {
+
+        width: 55px;
+        height: 55px;
+
+        font-size: 23px;
+
+    }
+
+
+    .volunteer-stat-card strong {
+
+        font-size: 28px;
+
+    }
+
+
+    .donation-content {
+
+        padding: 20px;
+
+    }
+
+
+    .volunteer-modal-content h2 {
+
+        font-size: 27px;
+
+    }
+
+}
+.modal-header{
+
+display:flex;
+align-items:center;
+gap:20px;
+margin-bottom:30px;
+
+}
+
+.modal-grid{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:18px;
+
+margin-bottom:25px;
+
+}
+
+.modal-card{
+
+background:#f7fbf7;
+
+padding:18px;
+
+border-radius:18px;
+
+border:1px solid #e5efe5;
+
+transition:.3s;
+
+}
+
+.modal-card:hover{
+
+transform:translateY(-4px);
+
+box-shadow:0 12px 25px rgba(0,0,0,.08);
+
+}
+
+.modal-card span{
+
+display:block;
+
+font-size:12px;
+
+color:#777;
+
+margin-bottom:8px;
+
+text-transform:uppercase;
+
+letter-spacing:1px;
+
+}
+
+.modal-card strong{
+
+font-size:15px;
+
+color:var(--primary);
+
+}
+
+.modal-section{
+
+margin-bottom:25px;
+
+padding:18px;
+
+border-radius:18px;
+
+background:#f8fcf8;
+
+}
+
+.modal-section h4{
+
+margin-bottom:10px;
+
+color:var(--primary);
+
+}
+
+.modal-section p{
+
+line-height:1.7;
+
+color:#666;
+
+}
+#volunteerMap{
+    width:100%;
+    height:550px;
+    border-radius:18px;
+    overflow:hidden;
+    margin-top:20px;
+}
+
+.map-popup h3{
+    margin-bottom:10px;
+    color:#2e7d32;
+}
+
+.map-popup p{
+    margin:6px 0;
+    font-size:14px;
+}
+
+.directions-btn{
+    display:inline-block;
+    margin-top:12px;
+    padding:10px 16px;
+    background:#2e7d32;
+    color:#fff;
+    text-decoration:none;
+    border-radius:8px;
+    font-weight:600;
+}
+
+.directions-btn:hover{
+    background:#1b5e20;
+}
+.accept-btn{
+
+    display:block;
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#ff9800;
+
+    color:white;
+
+    cursor:pointer;
+
+    font-weight:600;
+
+}
+
+/* ======================================
+   VOLUNTEER MAP
+====================================== */
+
+#volunteerMap{
+
+    width:100%;
+
+    height:550px;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:20px;
+
+    border:2px solid #e5e7eb;
+
+}
+
+
+.leaflet-popup-content{
+
+    min-width:220px;
+
+}
+
+
+.map-popup h3{
+
+    color:#1B5E20;
+
+    margin-bottom:10px;
+
+    font-size:18px;
+
+}
+
+
+.map-popup p{
+
+    margin:6px 0;
+
+    font-size:14px;
+
+    color:#555;
+
+}
+
+
+.directions-btn{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:12px;
+
+    padding:10px;
+
+    background:#1B5E20;
+
+    color:#fff;
+
+    text-decoration:none;
+
+    border-radius:10px;
+
+    font-weight:600;
+
+}
+
+
+.accept-btn{
+
+    width:100%;
+
+    margin-top:10px;
+
+    padding:10px;
+
+    border:none;
+
+    border-radius:10px;
+
+    background:#FF9800;
+
+    color:#fff;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+
+.accept-btn:hover{
+
+    transform:translateY(-2px);
+
+    opacity:.9;
+
+}

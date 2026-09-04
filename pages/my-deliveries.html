@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>My Deliveries | MPower</title>
+
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+        <link rel="stylesheet" href="../css/notifications.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/ui.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/my-deliveries.css">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ======================================
+         MY DELIVERIES
+    ======================================= -->
+
+    <section class="deliveries-dashboard">
+
+        <div class="container">
+
+
+            <!-- ==================================
+                 HEADER
+            =================================== -->
+
+            <div class="deliveries-header">
+
+                <div>
+
+                    <span class="section-title">
+                        Volunteer Hub
+                    </span>
+
+                    <h1>
+                        My Deliveries <i class="fa-solid fa-truck-fast"></i>
+                    </h1>
+
+                    <p>
+                        Track every delivery you've accepted
+                        and help move donated food to the people
+                        who need it.
+                    </p>
+
+                </div>
+
+
+                <div class="header-actions">
+
+                    <a
+                        href="volunteer.html"
+                        class="header-btn">
+
+                        <i class="fa-solid fa-arrow-left"></i> Volunteer Hub
+
+                    </a>
+
+
+                    <a
+                        href="profile.html"
+                        class="header-btn secondary">
+
+                        <i class="fa-solid fa-user"></i> Profile
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 DELIVERY STATISTICS
+            =================================== -->
+
+            <div class="delivery-stats">
+
+
+                <div class="delivery-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Active
+                        </span>
+
+                        <strong id="activeDeliveriesCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="delivery-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Picked Up
+                        </span>
+
+                        <strong id="pickedUpCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="delivery-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-building-user"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Delivered
+                        </span>
+
+                        <strong id="deliveredCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="delivery-stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong id="completedCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 ACTIVE DELIVERIES
+            =================================== -->
+
+            <div class="delivery-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-title">
+                            Current Work
+                        </span>
+
+                        <h2>
+                            Active Deliveries
+                        </h2>
+
+                        <p>
+                            Manage the deliveries currently
+                            assigned to you.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="activeDeliveries"
+                    class="deliveries-grid">
+
+                </div>
+
+
+                <div
+                    id="emptyActive"
+                    class="empty-state hidden">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+
+                    <h3>
+                        No active deliveries
+                    </h3>
+
+                    <p>
+                        Accept a food donation from the
+                        Volunteer Hub to see it here.
+                    </p>
+
+                    <a
+                        href="volunteer.html"
+                        class="empty-action">
+
+                        Find Available Deliveries
+
+                    </a>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 COMPLETED DELIVERIES
+            =================================== -->
+
+            <div class="delivery-section completed-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-title">
+                            Your Impact
+                        </span>
+
+                        <h2>
+                            Completed Deliveries
+                        </h2>
+
+                        <p>
+                            Food you've successfully helped
+                            move through MPower.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="completedDeliveries"
+                    class="deliveries-grid">
+
+                </div>
+
+
+                <div
+                    id="emptyCompleted"
+                    class="empty-state hidden">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-seedling"></i>
+                    </div>
+
+                    <h3>
+                        No completed deliveries yet
+                    </h3>
+
+                    <p>
+                        Your completed deliveries will
+                        appear here.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         DELIVERY DETAILS MODAL
+    ======================================= -->
+
+    <div
+        class="delivery-modal hidden"
+        id="deliveryModal">
+
+        <div class="delivery-modal-content">
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeDeliveryModal">
+
+                &times;
+
+            </button>
+
+
+            <div id="deliveryModalContent"></div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================
+         SCRIPTS
+    ======================================= -->
+
+    <script src="../js/api-config.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <script src="../js/my-deliveries.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+        <!-- Leaflet Map CSS -->
+<link
+rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css">
+
+    <title>Admin Dashboard | MPower</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/ui.css">
+
+</head>
+
+<body>
+
+    <!-- ======================================
+         ADMIN DASHBOARD
+    ======================================= -->
+
+    <section class="admin-section">
+
+        <div class="container">
+
+            <!-- ===============================
+                 PAGE HEADER
+            ================================ -->
+
+            <div class="admin-header">
+
+                <div>
+
+                    <span class="admin-label">
+                        MPower Administration
+                    </span>
+
+                    <h1>
+                        Admin Dashboard
+                    </h1>
+
+                    <p>
+                        Manage MPower users and monitor
+                        platform activity.
+                    </p>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="logoutBtn"
+                    class="logout-btn">
+
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Logout
+
+                </button>
+
+            </div>
+
+
+            <!-- ===============================
+                 DASHBOARD STATISTICS
+            ================================ -->
+
+            <div class="admin-stats">
+
+                <!-- Total Users -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Users
+                        </span>
+
+                        <h2 id="totalUsers">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Restaurants -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-utensils"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Restaurants
+                        </span>
+
+                        <h2 id="totalRestaurants">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Charities -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-heart-circle-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Charities
+                        </span>
+
+                        <h2 id="totalCharities">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Volunteers -->
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        <i class="fa-solid fa-handshake-angle"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Volunteers
+                        </span>
+
+                        <h2 id="totalVolunteers">
+                            0
+                        </h2>
+
+                    </div>
+
+                </div>
+
+                <!-- Total Donations -->
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        <i class="fa-solid fa-bowl-food"></i>
+    </div>
+
+    <div>
+
+        <span>
+            Total Donations
+        </span>
+
+        <h2 id="totalDonations">
+            0
+        </h2>
+
+    </div>
+
+</div>
+
+
+
+<!-- Available Donations -->
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        <i class="fa-solid fa-circle-check"></i>
+    </div>
+
+    <div>
+
+        <span>
+            Available Food
+        </span>
+
+        <h2 id="availableDonations">
+            0
+        </h2>
+
+    </div>
+
+</div>
+
+
+
+<!-- Claimed Donations -->
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        <i class="fa-solid fa-handshake-simple"></i>
+    </div>
+
+    <div>
+
+        <span>
+            Claimed Food
+        </span>
+
+        <h2 id="claimedDonations">
+            0
+        </h2>
+
+    </div>
+
+</div>
+
+
+
+<!-- Expiring Soon -->
+
+<div class="stat-card">
+
+    <div class="stat-icon">
+        <i class="fa-solid fa-hourglass-half"></i>
+    </div>
+
+    <div>
+
+        <span>
+            Expiring Soon
+        </span>
+
+        <h2 id="expiringDonations">
+            0
+        </h2>
+
+    </div>
+
+</div>
+
+            </div>
+
+
+            <!-- ===============================
+                 USER MANAGEMENT
+            ================================ -->
+
+            <div class="user-management">
+
+                <div class="section-header">
+
+                    <div>
+
+                        <h2>
+                            User Management
+                        </h2>
+
+                        <p>
+                            View, edit, and manage
+                            registered MPower accounts.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <!-- ======================================
+     RECENT DONATIONS
+======================================= -->
+
+<div class="donation-management">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                Recent Donations
+            </h2>
+
+            <p>
+                Monitor the latest food donations
+                added to MPower.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="users-table-container">
+
+        <table class="users-table">
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Food
+                    </th>
+
+                    <th>
+                        Donor
+                    </th>
+
+                    <th>
+                        Category
+                    </th>
+
+                    <th>
+                        Quantity
+                    </th>
+
+                    <th>
+                        Location
+                    </th>
+
+                    <th>
+                        Status
+                    </th>
+
+                    <th>
+                        Added
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="recentDonationsBody">
+
+                <!-- JavaScript inserts donations -->
+
+            </tbody>
+
+
+        </table>
+
+
+    </div>
+
+
+    <div
+        id="emptyDonations"
+        class="empty-admin-state"
+        style="display:none;">
+
+
+        <div class="empty-icon">
+            <i class="fa-solid fa-bowl-food"></i>
+
+
+        <h3>
+            No Donations Yet
+        </h3>
+
+
+        <p>
+            Donations will appear here when restaurants add food.
+        </p>
+
+
+    </div>
+
+
+</div>
+<!-- ======================================
+     DONATION MAP
+======================================= -->
+
+<div class="admin-map-section">
+
+    <div class="section-header">
+
+        <div>
+
+            <h2>
+                Live Donation Map
+            </h2>
+
+            <p>
+                View every donation location across MPower.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div id="adminMap"></div>
+
+</div>
+                <!-- ===============================
+                     SEARCH AND FILTER
+                ================================ -->
+
+                <div class="admin-controls">
+
+                    <div class="search-box">
+
+                        <label for="searchUsers">
+                            Search Users
+                        </label>
+
+                        <input
+                            type="search"
+                            id="searchUsers"
+                            placeholder="Search by name or email...">
+
+                    </div>
+
+
+                    <div class="filter-box">
+
+                        <label for="roleFilter">
+                            Filter by Role
+                        </label>
+
+                        <select id="roleFilter">
+
+                            <option value="">
+                                All Users
+                            </option>
+
+                            <option value="restaurant">
+                                Restaurants
+                            </option>
+
+                            <option value="charity">
+                                Charities
+                            </option>
+
+                            <option value="volunteer">
+                                Volunteers
+                            </option>
+
+                            <option value="admin">
+                                Admins
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ===============================
+                     USERS TABLE
+                ================================ -->
+
+                <div class="users-table-container">
+
+                    <table class="users-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Name
+                                </th>
+
+                                <th>
+                                    Email
+                                </th>
+
+                                <th>
+                                    Role
+                                </th>
+
+                                <th>
+                                    Phone
+                                </th>
+
+                                <th>
+                                    Joined
+                                </th>
+
+                                <th>
+                                    Actions
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="usersTableBody">
+
+                            <!-- JavaScript will
+                                 insert users here -->
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+
+                <!-- ===============================
+                     EMPTY STATE
+                ================================ -->
+
+                <div
+                    id="emptyUsers"
+                    class="empty-admin-state"
+                    style="display: none;">
+
+                    <div class="empty-icon">
+                        <i class="fa-solid fa-users"></i>
+                    </div>
+
+                    <h3>
+                        No Users Found
+                    </h3>
+
+                    <p>
+                        No users match your current
+                        search or filter.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ======================================
+         EDIT USER MODAL
+    ======================================= -->
+
+    <div
+        class="admin-modal hidden"
+        id="editUserModal">
+
+        <div class="admin-modal-content">
+
+            <!-- Modal Header -->
+
+            <div class="modal-header">
+
+                <div>
+
+                    <span>
+                        User Management
+                    </span>
+
+                    <h2>
+                        Edit User
+                    </h2>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="closeEditModal"
+                    class="close-modal">
+
+                    &times;
+
+                </button>
+
+            </div>
+
+
+            <!-- Edit Form -->
+
+            <form id="editUserForm">
+
+                <!-- Hidden User ID -->
+
+                <input
+                    type="hidden"
+                    id="editUserId">
+
+
+                <!-- Name -->
+
+                <div class="form-group">
+
+                    <label for="editName">
+                        Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editName"
+                        required>
+
+                </div>
+
+
+                <!-- Email -->
+
+                <div class="form-group">
+
+                    <label for="editEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="editEmail"
+                        required>
+
+                </div>
+
+
+                <!-- Role -->
+
+                <div class="form-group">
+
+                    <label for="editRole">
+                        Account Role
+                    </label>
+
+                    <select
+                        id="editRole"
+                        required>
+
+                        <option value="restaurant">
+                            Restaurant
+                        </option>
+
+                        <option value="charity">
+                            Charity
+                        </option>
+
+                        <option value="volunteer">
+                            Volunteer
+                        </option>
+
+                        <option value="admin">
+                            Admin
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- Address -->
+
+                <div class="form-group">
+
+                    <label for="editAddress">
+                        Address
+                    </label>
+
+                    <input
+                        type="text"
+                        id="editAddress">
+
+                </div>
+
+
+                <!-- Phone -->
+
+                <div class="form-group">
+
+                    <label for="editPhone">
+                        Phone Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="editPhone">
+
+                </div>
+
+
+                <!-- Modal Actions -->
+
+                <div class="modal-actions">
+
+                    <button
+                        type="button"
+                        id="cancelEdit"
+                        class="cancel-btn">
+
+                        Cancel
+
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="save-btn">
+
+                        Save Changes
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <!-- ======================================
+         DELETE CONFIRMATION MODAL
+    ======================================= -->
+
+    <div
+        class="admin-modal hidden"
+        id="deleteUserModal">
+
+        <div class="admin-modal-content delete-modal">
+
+            <div class="delete-icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+            </div>
+
+            <h2>
+                Delete Account?
+            </h2>
+
+            <p>
+
+                Are you sure you want to delete
+
+                <strong id="deleteUserName">
+                    this user
+                </strong>
+
+                ?
+
+            </p>
+
+            <p class="warning-text">
+
+                This action cannot be undone.
+
+            </p>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    id="cancelDelete"
+                    class="cancel-btn">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="button"
+                    id="confirmDelete"
+                    class="delete-confirm-btn">
+
+                    Delete Account
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- <!-- ======================================
+         JAVASCRIPT
+    ======================================= -->
+<script src="../js/api-config.js"></script>
+<script src="../js/ui.js"></script>
+
+<script src="../js/admin-auth.js"></script>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+<script src="../js/admin-map.js"></script>
+
+<script src="../js/admin.js"></script>
+</body>
+
+</html>

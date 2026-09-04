@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile | MPower</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link rel="stylesheet" href="../css/ui.css">
+    <link rel="stylesheet" href="../css/profile.css">
+</head>
+
+<body>
+    <main class="profile-page">
+        <div class="profile-container">
+
+            <aside class="profile-sidebar">
+                <div class="profile-header">
+                    <div class="profile-image-container">
+                        <img id="profileImage" src="../images/default-profile.png" alt="Profile Picture" class="profile-image">
+                        <label for="profileImageInput" class="change-image-btn">
+                            <i class="fa-solid fa-camera"></i>
+                            Change Image
+                        </label>
+                        <input type="file" id="profileImageInput" accept="image/*" hidden>
+                    </div>
+
+                    <div class="profile-heading">
+                        <span class="eyebrow">MPower member</span>
+                        <h1 id="profileName">My Profile</h1>
+                        <p id="profileRole">User</p>
+                    </div>
+                </div>
+
+                <div class="profile-summary">
+                    <div class="summary-item">
+                        <span class="summary-label">Account</span>
+                        <strong id="accountRole">—</strong>
+                    </div>
+                    <div class="summary-item">
+                        <span class="summary-label">Member since</span>
+                        <strong id="createdAt">—</strong>
+                    </div>
+                    <div class="summary-item summary-highlight">
+                        <span class="summary-label">Profile ID</span>
+                        <strong id="accountId">—</strong>
+                    </div>
+                </div>
+
+                <div class="side-panel-block">
+                    <div class="block-header">
+                        <h3>Quick Actions</h3>
+                    </div>
+                    <div id="profileNavigation" class="profile-navigation"></div>
+                </div>
+
+                <button id="logoutBtn" type="button" class="logout-btn">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    Log Out
+                </button>
+            </aside>
+
+            <section class="profile-content">
+                <div class="profile-card section-card">
+                    <div class="card-header">
+                        <div>
+                            <span class="eyebrow">Account overview</span>
+                            <h2>Edit Profile</h2>
+                        </div>
+                        <p>Keep your details current so your community can reach you without delays.</p>
+                    </div>
+
+                    <form id="profileForm" class="profile-form">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" placeholder="Enter your address">
+                        </div>
+
+                        <div class="form-group full-width">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" placeholder="Enter your phone number">
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+
+                <div class="profile-grid">
+                    <div class="profile-card compact-card">
+                        <div class="card-header">
+                            <div>
+                                <span class="eyebrow">Location</span>
+                                <h2>Your Location</h2>
+                            </div>
+                        </div>
+                        <div class="location-section">
+                            <p id="locationStatus">Location not set</p>
+                            <button id="setLocationBtn" type="button">
+                                <i class="fa-solid fa-location-dot"></i>
+                                Set My Location
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="profile-card compact-card">
+                        <div class="card-header">
+                            <div>
+                                <span class="eyebrow">Account details</span>
+                                <h2>Profile Summary</h2>
+                            </div>
+                        </div>
+
+                        <div class="account-info">
+                            <div class="account-item">
+                                <span>Account Type</span>
+                                <strong id="accountRoleDetail">—</strong>
+                            </div>
+                            <div class="account-item">
+                                <span>Platform Role</span>
+                                <strong id="accountRoleValue">—</strong>
+                            </div>
+                            <div class="account-item">
+                                <span>Account ID</span>
+                                <strong id="accountIdDetail">—</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card password-card">
+                    <div class="card-header">
+                        <div>
+                            <span class="eyebrow">Security</span>
+                            <h2>Change Password</h2>
+                        </div>
+                        <p>Keep your account protected with a stronger password.</p>
+                    </div>
+
+                    <form id="changePasswordForm" class="password-form">
+                        <div class="form-group">
+                            <label for="currentPassword">Current Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="currentPassword" placeholder="Enter your current password" required>
+                                <button type="button" class="toggle-password" data-target="currentPassword">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="newPassword">New Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="newPassword" placeholder="Enter a new password" required>
+                                <button type="button" class="toggle-password" data-target="newPassword">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+
+                            <div class="password-strength">
+                                <div id="passwordStrengthBar" class="password-strength-bar"></div>
+                            </div>
+                            <small id="passwordStrengthText">Password strength</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <div class="password-wrapper">
+                                <input type="password" id="confirmPassword" placeholder="Confirm your new password" required>
+                                <button type="button" class="toggle-password" data-target="confirmPassword">
+                                    <i class="fa-regular fa-eye"></i>
+                                </button>
+                            </div>
+                            <small id="passwordMatchMessage" aria-live="polite"></small>
+                        </div>
+
+                        <div class="password-requirements" aria-label="Password requirements">
+                            <span id="lengthRequirement" class="password-requirement">8+ characters</span>
+                            <span id="uppercaseRequirement" class="password-requirement">Uppercase</span>
+                            <span id="lowercaseRequirement" class="password-requirement">Lowercase</span>
+                            <span id="numberRequirement" class="password-requirement">Number</span>
+                        </div>
+
+                        <button type="submit" class="submit-btn secondary-btn">
+                            <i class="fa-solid fa-key"></i>
+                            Update Password
+                        </button>
+                    </form>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <div class="logout-modal hidden" id="logoutModal">
+        <div class="logout-modal-content">
+            <button type="button" class="logout-close" id="closeLogoutModal">&times;</button>
+            <div class="logout-icon">
+                <i class="fa-solid fa-right-from-bracket"></i>
+            </div>
+            <h2>Log Out?</h2>
+            <p>Are you sure you want to log out of your MPower account?</p>
+            <div class="logout-actions">
+                <button type="button" class="cancel-logout" id="cancelLogout">Cancel</button>
+                <button type="button" class="confirm-logout" id="confirmLogout">Log Out</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/api-config.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/auth.js"></script>
+    <script src="../js/profile.js"></script>
+    <script src="../js/location.js"></script>
+</body>
+
+</html>

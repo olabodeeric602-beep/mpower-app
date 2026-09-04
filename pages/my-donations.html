@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>My Donations | MPower</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="../css/notifications.css">
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/ui.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/my-donations.css">
+
+</head>
+
+
+<body>
+
+
+<section class="donations-section">
+
+
+    <div class="container">
+
+
+        <!-- ======================================
+             PAGE HEADER
+        ======================================= -->
+
+        <header class="page-header">
+
+            <div class="header-content">
+
+                <span class="eyebrow">
+                    <i class="fa-solid fa-seedling"></i>
+                    MPower • Donor Center
+                </span>
+
+                <h1>
+                    My Donations
+                </h1>
+
+                <p>
+                    Manage your food donations and follow
+                    their journey from donation to delivery.
+                </p>
+
+            </div>
+
+
+            <div class="header-actions">
+
+                <a
+                    href="profile.html"
+                    class="header-btn secondary-btn">
+
+                    <i class="fa-solid fa-user"></i>
+                    Profile
+
+                </a>
+
+
+                <a
+                    href="incoming-requests.html"
+                    class="header-btn primary-btn">
+
+                    <i class="fa-solid fa-inbox"></i>
+                    Incoming Requests
+
+                </a>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ======================================
+             STATISTICS
+        ======================================= -->
+
+        <section class="donation-stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon stat-total">
+                    <i class="fa-solid fa-box-open"></i>
+                </div>
+
+                <div class="stat-content">
+
+                    <span>
+                        Total Donations
+                    </span>
+
+                    <strong id="totalCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card available-stat">
+
+                <div class="stat-icon stat-available">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div class="stat-content">
+
+                    <span>
+                        Available
+                    </span>
+
+                    <strong id="availableCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card requested-stat">
+
+                <div class="stat-icon stat-requested">
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+
+                <div class="stat-content">
+
+                    <span>
+                        Requested
+                    </span>
+
+                    <strong id="requestedCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="stat-card active-stat">
+
+                <div class="stat-icon stat-active">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+
+                <div class="stat-content">
+
+                    <span>
+                        Active Deliveries
+                    </span>
+
+                    <strong id="activeCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- ======================================
+             DONATIONS
+        ======================================= -->
+
+        <section class="donations-area">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        Your Impact
+                    </span>
+
+                    <h2>
+                        Food You've Donated
+                    </h2>
+
+                    <p>
+                        Keep track of every donation you've
+                        contributed to the MPower network.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="donate.html"
+                    class="create-donation-btn">
+
+                    <i class="fa-solid fa-basket-shopping"></i>
+                    Donate Food
+
+                </a>
+
+            </div>
+
+
+
+            <div
+                class="donations-grid"
+                id="donationsGrid">
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ======================================
+     SCRIPTS
+======================================= -->
+
+<script src="../js/api-config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/notifications.js"></script>
+<script src="../js/auth.js"></script>
+
+<script src="../js/my-donations.js"></script>
+
+
+</body>
+
+</html>

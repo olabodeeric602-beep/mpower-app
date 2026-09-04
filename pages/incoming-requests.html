@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Incoming Requests | MPower</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/ui.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/incoming-requests.css">
+        <link rel="stylesheet" href="../css/notifications.css">
+
+</head>
+
+
+<body>
+
+
+<section class="incoming-section">
+
+    <div class="incoming-container">
+
+
+        <!-- ==================================
+             PAGE HEADER
+        =================================== -->
+
+        <header class="incoming-header">
+
+            <div class="header-text">
+
+                <span class="page-label">
+                    <i class="fa-solid fa-hand-holding-heart"></i>
+                    Donor Hub
+                </span>
+
+                <h1>
+                    Incoming Requests
+                </h1>
+
+                <p>
+                    Review requests from people and charities
+                    who need the food you've donated.
+                </p>
+
+            </div>
+
+
+            <a
+                href="my-donations.html"
+                class="back-btn">
+
+                <i class="fa-solid fa-arrow-left"></i>
+                My Donations
+
+            </a>
+
+        </header>
+
+
+
+        <!-- ==================================
+             STATISTICS
+        =================================== -->
+
+        <div class="request-stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon stat-pending">
+                    <i class="fa-solid fa-inbox"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        Pending
+                    </span>
+
+                    <strong id="pendingCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon stat-accepted">
+                    <i class="fa-solid fa-circle-check"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        Accepted
+                    </span>
+
+                    <strong id="acceptedCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon stat-delivery">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        In Delivery
+                    </span>
+
+                    <strong id="deliveryCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon stat-complete">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+
+                <div>
+
+                    <span>
+                        Completed
+                    </span>
+
+                    <strong id="completedCount">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================
+             REQUESTS SECTION
+        =================================== -->
+
+        <section class="requests-section-inner">
+
+
+            <div class="section-heading">
+
+                <div>
+
+                    <span class="section-label">
+                        REQUEST MANAGEMENT
+                    </span>
+
+                    <h2>
+                        People Waiting For Food
+                    </h2>
+
+                    <p>
+                        Accept a request to reserve your donation
+                        for the requester.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 FILTERS
+            =================================== -->
+
+            <div class="request-filters">
+
+                <button
+                    type="button"
+                    class="filter-btn active"
+                    data-filter="all">
+
+                    All
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-filter="pending">
+
+                    Pending
+
+                </button>
+
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-filter="accepted">
+
+                    Accepted
+
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-filter="in-delivery">
+
+                    In Delivery
+
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-filter="completed">
+
+                    Completed
+
+                </button>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 REQUEST GRID
+            =================================== -->
+
+            <div
+                class="incoming-grid"
+                id="incomingRequests">
+
+            </div>
+
+
+
+            <!-- ==================================
+                 EMPTY STATE
+            =================================== -->
+
+            <div
+                class="empty-state hidden"
+                id="emptyRequests">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                <h3>
+                    No Incoming Requests
+                </h3>
+
+                <p>
+                    You don't have any food requests
+                    matching this filter yet.
+                </p>
+
+                <a
+                    href="my-donations.html"
+                    class="empty-btn">
+
+                    View My Donations
+
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</section>
+
+
+
+<!-- ==========================================
+     REQUEST DETAILS MODAL
+=========================================== -->
+
+<div
+    class="request-modal hidden"
+    id="requestModal">
+
+
+    <div class="request-modal-content">
+
+
+        <button
+            type="button"
+            class="modal-close"
+            id="closeRequestModal">
+
+            &times;
+
+        </button>
+
+
+        <div id="requestModalBody">
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<script src="../js/api-config.js"></script>
+<script src="../js/ui.js"></script>
+<script src="../js/notifications.js"></script>
+<script src="../js/auth.js"></script>
+
+<script src="../js/incoming-requests.js"></script>
+
+</body>
+
+</html>

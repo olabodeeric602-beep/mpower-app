@@ -1,0 +1,431 @@
+/* ======================================
+   MPower Notifications
+====================================== */
+
+#mpowerNotificationWrapper {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+}
+
+
+/* ======================================
+   Notification Button
+====================================== */
+
+.mpower-notification-button {
+
+    position: relative;
+
+    width: 50px;
+    height: 50px;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.12);
+
+    cursor: pointer;
+
+    font-size: 21px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+
+}
+
+
+.mpower-notification-button:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.16);
+
+}
+
+
+/* ======================================
+   Notification Count
+====================================== */
+
+.mpower-notification-count {
+
+    position: absolute;
+
+    top: -4px;
+    right: -4px;
+
+    min-width: 21px;
+    height: 21px;
+
+    padding: 0 5px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50px;
+
+    background: #e53935;
+
+    color: #ffffff;
+
+    border: 2px solid #ffffff;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+/* ======================================
+   Hidden
+====================================== */
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+/* ======================================
+   Notification Panel
+====================================== */
+
+.mpower-notification-panel {
+
+    position: absolute;
+
+    top: 62px;
+    right: 0;
+
+    width: 390px;
+    max-width: calc(100vw - 32px);
+
+    max-height: 560px;
+
+    overflow: hidden;
+
+    background: #ffffff;
+
+    border: 1px solid #e5e7eb;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 20px 55px rgba(0, 0, 0, 0.18);
+
+}
+
+
+/* ======================================
+   Header
+====================================== */
+
+.notification-panel-header {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px;
+
+    border-bottom: 1px solid #eeeeee;
+
+}
+
+
+.notification-panel-label {
+
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #43a047;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    text-transform: uppercase;
+
+}
+
+
+.notification-panel-header h3 {
+
+    margin: 0;
+
+    color: #1b1b1b;
+
+    font-size: 20px;
+
+}
+
+
+#markAllNotificationsRead {
+
+    border: none;
+
+    background: transparent;
+
+    color: #43a047;
+
+    cursor: pointer;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+}
+
+
+#markAllNotificationsRead:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ======================================
+   Notification List
+====================================== */
+
+.notification-list {
+
+    max-height: 440px;
+
+    overflow-y: auto;
+
+}
+
+
+/* ======================================
+   Notification Item
+====================================== */
+
+.notification-item {
+
+    position: relative;
+
+    display: flex;
+
+    gap: 13px;
+
+    padding: 16px 18px;
+
+    border-bottom: 1px solid #f0f0f0;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease;
+
+}
+
+
+.notification-item:hover {
+
+    background: #f8faf8;
+
+}
+
+
+.notification-item.unread {
+
+    background: #f1f8f2;
+
+}
+
+
+.notification-item.unread:hover {
+
+    background: #eaf5ec;
+
+}
+
+
+/* ======================================
+   Icon
+====================================== */
+
+.notification-icon {
+
+    flex: 0 0 40px;
+
+    width: 40px;
+    height: 40px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: #eef7ef;
+
+    font-size: 19px;
+
+}
+
+
+/* ======================================
+   Content
+====================================== */
+
+.notification-content {
+
+    min-width: 0;
+
+    flex: 1;
+
+}
+
+
+.notification-content strong {
+
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #202420;
+
+    font-size: 14px;
+
+}
+
+
+.notification-content p {
+
+    margin: 0 0 6px;
+
+    color: #666;
+
+    font-size: 13px;
+
+    line-height: 1.45;
+
+}
+
+
+.notification-time {
+
+    color: #999;
+
+    font-size: 11px;
+
+}
+
+
+/* ======================================
+   Unread Dot
+====================================== */
+
+.notification-unread-dot {
+
+    flex: 0 0 8px;
+
+    width: 8px;
+    height: 8px;
+
+    margin-top: 7px;
+
+    border-radius: 50%;
+
+    background: #43a047;
+
+}
+
+
+/* ======================================
+   Empty State
+====================================== */
+
+.notification-empty {
+
+    padding: 50px 20px;
+
+    text-align: center;
+
+}
+
+
+.notification-empty > div {
+
+    margin-bottom: 10px;
+
+    font-size: 32px;
+
+    opacity: 0.6;
+
+}
+
+
+.notification-empty strong {
+
+    display: block;
+
+    margin-bottom: 6px;
+
+    color: #333;
+
+}
+
+
+.notification-empty p {
+
+    margin: 0;
+
+    color: #888;
+
+    font-size: 13px;
+
+}
+
+
+/* ======================================
+   Mobile
+====================================== */
+
+@media (max-width: 600px) {
+
+    #mpowerNotificationWrapper {
+
+        top: 15px;
+        right: 15px;
+
+    }
+
+
+    .mpower-notification-panel {
+
+        position: fixed;
+
+        top: 75px;
+
+        left: 15px;
+        right: 15px;
+
+        width: auto;
+
+        max-width: none;
+
+    }
+
+}

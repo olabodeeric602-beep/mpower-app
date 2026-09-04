@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>Volunteer Dashboard | MPower</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+        rel="stylesheet"
+        href="../css/style.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/ui.css">
+
+    <link
+        rel="stylesheet"
+        href="../css/volunteer.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css">
+</head>
+
+
+<body>
+
+
+    <!-- ======================================
+         VOLUNTEER DASHBOARD
+    ======================================= -->
+
+    <section class="volunteer-dashboard">
+
+        <div class="container">
+
+
+            <!-- ==================================
+                 HEADER
+            =================================== -->
+
+            <div class="volunteer-header">
+
+                <div>
+
+                    <span class="section-title">
+                        <i class="fa-solid fa-heart"></i>
+                        Volunteer Hub
+                    </span>
+
+                    <h1>
+                        Welcome,
+                        <span id="volunteerName">
+                            Volunteer
+                        </span>
+                        <i class="fa-solid fa-hand-wave"></i>
+                    </h1>
+
+                    <p>
+                        Help move donated food from restaurants
+                        and donors to charities that need it.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="profile.html"
+                    class="back-profile-btn">
+
+                    <i class="fa-solid fa-user"></i>
+                    My Profile
+
+                </a>
+
+            </div>
+
+
+
+            <!-- ==================================
+                 STATISTICS
+            =================================== -->
+
+            <div class="volunteer-stats">
+
+
+                <div class="volunteer-stat-card">
+
+                    <div class="stat-icon stat-available">
+                        <i class="fa-solid fa-box-open"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Available
+                        </span>
+
+                        <strong id="availableCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="volunteer-stat-card">
+
+                    <div class="stat-icon stat-active">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            My Deliveries
+                        </span>
+
+                        <strong id="activeCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="volunteer-stat-card">
+
+                    <div class="stat-icon stat-complete">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Completed
+                        </span>
+
+                        <strong id="completedCount">
+                            0
+                        </strong>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+<!-- ==================================
+     LIVE DONATION MAP
+=================================== -->
+
+<div class="volunteer-section">
+
+    <div class="section-heading">
+
+        <div>
+
+            <span class="section-title">
+                Live Donation Map
+            </span>
+
+            <h2>
+                Available Pickup Locations
+            </h2>
+
+            <p>
+                View every available donation on the map and choose the one you'd like to collect.
+            </p>
+
+        </div>
+
+    </div>
+
+    <div id="volunteerMap"></div>
+
+</div>
+
+            <!-- ==================================
+                 AVAILABLE DONATIONS
+            =================================== -->
+
+            <div class="volunteer-section">
+
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-title">
+                            Available Deliveries
+                        </span>
+
+                        <h2>
+                            Food Waiting For A Volunteer
+                        </h2>
+
+                        <p>
+                            These donations are available
+                            for pickup and delivery.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    id="availableDonations"
+                    class="donation-grid">
+
+                </div>
+
+
+                <!-- Empty State -->
+
+                <div
+                    id="emptyDonations"
+                    class="empty-state hidden">
+
+                    <div class="empty-icon">
+                        📦
+                    </div>
+
+                    <h3>
+                        No deliveries available
+                    </h3>
+
+                    <p>
+                        There are currently no food donations
+                        waiting for a volunteer.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ======================================
+         DONATION DETAILS MODAL
+    ======================================= -->
+
+    <div
+        class="volunteer-modal hidden"
+        id="donationModal">
+
+        <div class="volunteer-modal-content">
+
+
+            <button
+                type="button"
+                class="modal-close"
+                id="closeDonationModal">
+
+                &times;
+
+            </button>
+
+
+            <div
+                id="donationModalContent">
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ======================================
+         SCRIPTS
+    ======================================= -->
+
+    <script src="../js/api-config.js"></script>
+    <script src="../js/ui.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/auth.js"></script>
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="../js/volunteer.js"></script>
+<script src="../js/volunteer-map.js"></script>
+
+</body>
+
+</html>
