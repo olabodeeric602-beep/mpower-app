@@ -835,7 +835,7 @@ usersTableBody.addEventListener(
 
 editUserForm.addEventListener(
     "submit",
-    function(event){
+    async function(event){
 
 
         event.preventDefault();
@@ -843,7 +843,7 @@ editUserForm.addEventListener(
 
 
         const id =
-            Number(editUserId.value);
+            String(editUserId.value || "");
 
 
 
@@ -855,7 +855,7 @@ editUserForm.addEventListener(
         // Prevent removing own admin role
 
         if(
-            id === Number(currentUser.id)
+            id === getUserId(currentUser)
             &&
             role !== "admin"
         ){
@@ -881,49 +881,71 @@ editUserForm.addEventListener(
 
         if(index === -1){
 
+            showMessage(
+                "Could not identify this user. Close the window and try again.",
+                "error",
+                "Update Failed"
+            );
+
             return;
 
         }
 
 
 
-        users[index] = {
+        const originalButtonText =
+            event.submitter
+                ? event.submitter.textContent
+                : "Save Changes";
 
-            ...users[index],
+        if (event.submitter) {
+            event.submitter.disabled = true;
+            event.submitter.textContent = "Saving...";
+        }
 
-            name:
-                editName.value.trim(),
+        try {
+            const response = await fetch(
+                `${API_BASE_URL}/auth/users/${encodeURIComponent(id)}`,
+                {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({
+                        name: editName.value.trim(),
+                        email: editEmail.value.trim().toLowerCase(),
+                        role,
+                        address: editAddress.value.trim(),
+                        phone: editPhone.value.trim()
+                    })
+                }
+            );
 
-            email:
-                editEmail.value.trim().toLowerCase(),
+            const data = await response.json();
 
-            role,
+            if (!response.ok) {
+                throw new Error(data.message || "Could not update this account.");
+            }
 
-            address:
-                editAddress.value.trim(),
+            await loadUsersFromAPI();
+            updateStatistics();
+            displayUsers();
+            closeEditUserModal();
 
-            phone:
-                editPhone.value.trim()
-
-        };
-
-        // Note: User changes persist in API automatically
-        // Only update the local array
-
-        updateStatistics();
-
-        displayUsers();
-
-
-        closeEditUserModal();
-
-
-
-        showMessage(
-            "User updated successfully.",
-            "success",
-            "Success"
-        );
+            showMessage(
+                data.message || "User updated successfully.",
+                "success",
+                "Success"
+            );
+        } catch (error) {
+            showMessage(error.message, "error", "Update Failed");
+        } finally {
+            if (event.submitter) {
+                event.submitter.disabled = false;
+                event.submitter.textContent = originalButtonText;
+            }
+        }
 
 
     }
