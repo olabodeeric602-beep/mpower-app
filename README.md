@@ -257,7 +257,7 @@ MPower/
 ## 1. Clone the repository
 
 ```bash
-git clone YOUR_GITHUB_REPOSITORY_URL
+git clone https://github.com/olabodeeric602-beep/mpower-app
 ```
 
 ## 2. Open the project
@@ -294,7 +294,7 @@ npm run dev
 
 **Live Website:**
 
-[PASTE YOUR LIVE DEPLOYMENT LINK HERE]
+https://mpower-app.onrender.com
 
 ---
 
@@ -302,7 +302,7 @@ npm run dev
 
 **Public GitHub Repository:**
 
-[PASTE YOUR PUBLIC GITHUB REPOSITORY LINK HERE]
+https://github.com/olabodeeric602-beep/mpower-app
 
 ---
 
@@ -371,8 +371,8 @@ Future versions of MPower could include:
 
 | Resource          | Link                       |
 | ----------------- | -------------------------- |
-| GitHub Repository | YOUR_GITHUB_REPOSITORY_URL |
-| Live Website      | YOUR_LIVE_PROJECT_URL      |
+| GitHub Repository | https://github.com/olabodeeric602-beep/mpower-app |
+| Live Website      | https://mpower-app.onrender.com      |
 
 ---
 
