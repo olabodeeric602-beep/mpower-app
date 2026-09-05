@@ -3,6 +3,7 @@
 const express = require("express");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
 const User = require("../models/user");
 const Donation = require("../models/donation");
 const Request = require("../models/request");
@@ -828,6 +829,114 @@ router.get(
 
         }
 
+    }
+);
+
+// ======================================
+// UPDATE USER (ADMIN ONLY)
+// PUT /api/auth/users/:id
+// ======================================
+
+router.put(
+    "/users/:id",
+    authenticateToken,
+    async (req, res) => {
+
+        try {
+
+            if (req.user.role !== "admin") {
+                return res.status(403).json({
+                    success: false,
+                    message: "Access denied. Admin only."
+                });
+            }
+
+            const { id } = req.params;
+            const { name, email, role, address, phone } = req.body;
+
+            if (!mongoose.Types.ObjectId.isValid(id)) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Invalid user ID."
+                });
+            }
+
+            if (!name || !email || !role) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Name, email, and role are required."
+                });
+            }
+
+            const allowedRoles = [
+                "restaurant",
+                "charity",
+                "volunteer",
+                "admin"
+            ];
+
+            if (!allowedRoles.includes(role)) {
+                return res.status(400).json({
+                    success: false,
+                    message: "Invalid account role."
+                });
+            }
+
+            if (String(id) === String(req.user.userId) && role !== "admin") {
+                return res.status(400).json({
+                    success: false,
+                    message: "You cannot remove your own admin privileges."
+                });
+            }
+
+            const cleanEmail = email.toLowerCase().trim();
+            const existingUser = await User.findOne({
+                email: cleanEmail,
+                _id: { $ne: id }
+            });
+
+            if (existingUser) {
+                return res.status(409).json({
+                    success: false,
+                    message: "That email address is already in use."
+                });
+            }
+
+            const user = await User.findByIdAndUpdate(
+                id,
+                {
+                    name: name.trim(),
+                    email: cleanEmail,
+                    role,
+                    address: String(address || "").trim(),
+                    phone: String(phone || "").trim()
+                },
+                {
+                    new: true,
+                    runValidators: true
+                }
+            ).select("-password");
+
+            if (!user) {
+                return res.status(404).json({
+                    success: false,
+                    message: "User account not found."
+                });
+            }
+
+            return res.json({
+                success: true,
+                message: "User information updated successfully.",
+                user
+            });
+
+        } catch (error) {
+            console.error("Update user error:", error);
+            return res.status(500).json({
+                success: false,
+                message: "Something went wrong while updating the user account."
+            });
+        }
     }
 );
 
