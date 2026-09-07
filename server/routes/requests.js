@@ -912,12 +912,12 @@ router.put(
 
 
             // ==================================
-            // DONATION REMAINS AVAILABLE
-            // FOR VOLUNTEER ASSIGNMENT
+            // KEEP THE DONATION HIDDEN FROM OTHER CHARITIES
+            // UNTIL A VOLUNTEER accepts the delivery.
             // ==================================
 
             donation.status =
-                "Available";
+                "Accepted";
 
 
             await donation.save();
@@ -1231,7 +1231,7 @@ router.get(
                             String(
                                 donation.status
                             ).toLowerCase() ===
-                            "available"
+                            "accepted"
                         );
 
                     }
@@ -1419,14 +1419,14 @@ router.put(
 
 
             // ==================================
-            // DONATION MUST STILL BE AVAILABLE
+            // DONATION MUST STILL BE RESERVED FOR THIS DELIVERY
             // ==================================
 
             if (
                 String(
                     donation.status
                 ).toLowerCase() !==
-                "available"
+                "accepted"
             ) {
 
                 return res.status(409).json({
