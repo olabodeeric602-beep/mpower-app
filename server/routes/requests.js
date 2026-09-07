@@ -321,6 +321,11 @@ router.post(
 
                 });
 
+            donation.status =
+                "Requested";
+
+            await donation.save();
+
 
             return res.status(201).json({
 
@@ -875,11 +880,12 @@ router.put(
             // DONATION STATUS CHECK
             // ==================================
 
+            const donationStatus =
+                String(donation.status).toLowerCase();
+
             if (
-                String(
-                    donation.status
-                ).toLowerCase() !==
-                "available"
+                donationStatus !== "available" &&
+                donationStatus !== "requested"
             ) {
 
                 return res.status(400).json({
@@ -1092,6 +1098,11 @@ router.put(
 
 
             await request.save();
+
+            donation.status =
+                "Available";
+
+            await donation.save();
 
 
             return res.json({
