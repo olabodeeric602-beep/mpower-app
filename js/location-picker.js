@@ -134,7 +134,6 @@ maximumAge: 300000
 
 window.MPOWER_REFRESH_LOCATION = detectUserLocation;
 detectUserLocation();
-});
 
 }
 
