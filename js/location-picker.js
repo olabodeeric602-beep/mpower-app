@@ -26,11 +26,6 @@ const selectedLocation =
 document.getElementById("selectedLocation");
 
 
-const locationInput =
-document.getElementById("location");
-
-
-
 const map =
 L.map("donationMap")
 .setView(
@@ -81,167 +76,64 @@ ${lng.toFixed(5)}
 
 }
 
-
-
-// ======================================
-// CLICK MAP
-// ======================================
-
-map.on(
-"click",
-function(event){
-
-
-const lat =
-event.latlng.lat;
-
-
-const lng =
-event.latlng.lng;
-
-
-
-if(marker){
-
-map.removeLayer(marker);
-
-}
-
-
-
-marker =
-L.marker(
-[
-lat,
-lng
-]
-)
-.addTo(map);
-
-
-
-updateLocation(
-lat,
-lng
-);
-
-
-});
-
-
-
+// DETECT USER LOCATION
 
 // ======================================
+async function reverseGeocode(lat, lng){
 // SEARCH LOCATION
-// ======================================
-
-
-if(locationInput){
-
-
-locationInput.addEventListener(
-"change",
-async function(){
-
-
-const place =
-this.value.trim();
-
-
-
-if(!place) return;
-
-
-
-try{
-
-
-const response =
-await fetch(
-`https://nominatim.openstreetmap.org/search?format=json&limit=1&q=${encodeURIComponent(place)}`
+try {
+const response = await fetch(
+`https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lng)}`
 );
-
-
-
-const data =
-await response.json();
-
-
-
-if(data.length === 0){
-
-    showMessage(
-        "We couldn't find that location. Please try another search.",
-        "warning",
-        "Location Not Found"
-    );
-
-return;
+const data = await response.json();
+return data.display_name || `Latitude ${lat.toFixed(5)}, Longitude ${lng.toFixed(5)}`;
+} catch (error) {
+console.error("Reverse geocoding failed:", error);
+return `Latitude ${lat.toFixed(5)}, Longitude ${lng.toFixed(5)}`;
+}
 
 }
 
-
-
-const lat =
-Number(data[0].lat);
-
-
-
-const lng =
-Number(data[0].lon);
-
-
-
-map.setView(
-[
-lat,
-lng
-],
-15
-);
-
-
-
+function showDetectedLocation(lat, lng, label){
 if(marker){
-
 map.removeLayer(marker);
-
 }
 
+marker = L.marker([lat, lng]).addTo(map);
+map.setView([lat, lng], 15);
+updateLocation(lat, lng);
+document.getElementById("location").value = label;
+selectedLocation.textContent = `Detected: ${label}`;
+}
 
+function detectUserLocation(){
+if(!navigator.geolocation){
+selectedLocation.textContent = "Location detection is not supported by this browser.";
+return;
+}
 
-marker =
-L.marker(
-[
-lat,
-lng
-]
-)
-.addTo(map);
-
-
-
-updateLocation(
-lat,
-lng
+navigator.geolocation.getCurrentPosition(
+async function(position){
+const lat = position.coords.latitude;
+const lng = position.coords.longitude;
+selectedLocation.textContent = "Location detected. Finding the address...";
+const label = await reverseGeocode(lat, lng);
+showDetectedLocation(lat, lng, label);
+},
+function(error){
+console.error("Location detection failed:", error);
+selectedLocation.textContent = "Please allow location access to submit a donation.";
+},
+{
+enableHighAccuracy: true,
+timeout: 10000,
+maximumAge: 300000
+}
 );
-
-
-
 }
 
-
-catch(error){
-
-console.error(
-"Location search failed:",
-error
-);
-
-}
-
-
-
+window.MPOWER_REFRESH_LOCATION = detectUserLocation;
+detectUserLocation();
 });
 
 }
