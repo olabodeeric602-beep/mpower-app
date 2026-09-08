@@ -136,7 +136,4 @@ window.MPOWER_REFRESH_LOCATION = detectUserLocation;
 detectUserLocation();
 
 }
-
-
-
 }
